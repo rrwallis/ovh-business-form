@@ -77,14 +77,7 @@
         </div>
 
         <label for="category">Category <span class="opt">(optional)</span></label>
-        <select id="category" name="category">
-          <option value="">Select…</option>
-          <option>Automotive</option><option>Construction &amp; Trades</option><option>Food &amp; Drink</option>
-          <option>Health &amp; Wellness</option><option>Home Services</option><option>Professional Services</option>
-          <option>Real Estate</option><option>Retail</option><option>Technology</option><option>Agriculture</option>
-          <option>Arts &amp; Entertainment</option><option>Fitness &amp; Recreation</option><option>Transportation &amp; Logistics</option>
-          <option>Other</option>
-        </select>
+        <select id="category" name="category"><option value="">Select…</option></select>
 
         <label for="description">Description <span class="opt">(optional)</span></label>
         <textarea id="description" name="description" maxlength="2000" placeholder="What does the business offer?"></textarea>
@@ -167,9 +160,23 @@
 (function(){
   var SUPABASE_URL = "https://rzzmhrewckartnzuuhot.supabase.co";
   var SUPABASE_KEY = "sb_publishable_q0TYaXWMRQ5E-qDvj1oNHw_iapm02qg";
+  var FALLBACK_CATEGORIES = [{"slug": "restaurants", "name": "Restaurants & Food"}, {"slug": "breweries-wineries", "name": "Breweries, Wineries & Taprooms"}, {"slug": "craft", "name": "Craft & Handmade"}, {"slug": "retail", "name": "Retail & Shopping"}, {"slug": "insurance", "name": "Insurance"}, {"slug": "financial", "name": "Financial & Tax Services"}, {"slug": "real-estate", "name": "Real Estate & Mortgage"}, {"slug": "automotive", "name": "Automotive"}, {"slug": "home-services", "name": "Home Services & Trades"}, {"slug": "construction", "name": "Construction & Contracting"}, {"slug": "health-wellness", "name": "Health & Wellness"}, {"slug": "fitness", "name": "Fitness & Recreation"}, {"slug": "outdoor", "name": "Outdoor, Hunting & Fishing"}, {"slug": "firearms", "name": "Firearms & Training"}, {"slug": "legal", "name": "Legal Services"}, {"slug": "professional", "name": "Professional & Business Services"}, {"slug": "technology", "name": "Technology & IT"}, {"slug": "beauty", "name": "Beauty & Personal Care"}, {"slug": "pets", "name": "Pets & Veterinary"}, {"slug": "travel-lodging", "name": "Travel & Lodging"}, {"slug": "entertainment", "name": "Entertainment & Events"}, {"slug": "education", "name": "Education & Training"}, {"slug": "agriculture", "name": "Agriculture & Farm"}, {"slug": "other", "name": "Other"}];
   var COUNTIES = ["Baker","Benton","Clackamas","Clatsop","Columbia","Coos","Crook","Curry","Deschutes","Douglas","Gilliam","Grant","Harney","Hood River","Jackson","Jefferson","Josephine","Klamath","Lake","Lane","Lincoln","Linn","Malheur","Marion","Morrow","Multnomah","Polk","Sherman","Tillamook","Umatilla","Union","Wallowa","Wasco","Washington","Wheeler","Yamhill"];
   var sel = document.getElementById("county");
   COUNTIES.forEach(function(c){var o=document.createElement("option");o.textContent=c;sel.appendChild(o);});
+
+  var catSel = document.getElementById("category");
+  function fillCats(list){
+    var cur = catSel.value;
+    while (catSel.options.length > 1) catSel.remove(1);
+    list.forEach(function(c){var o=document.createElement("option");o.value=c.slug;o.textContent=c.name;catSel.appendChild(o);});
+    catSel.value = cur;
+  }
+  fillCats(FALLBACK_CATEGORIES);
+  fetch(SUPABASE_URL + "/rest/v1/business_categories?select=slug,name&is_active=eq.true&order=sort_order.asc", {headers:{"apikey":SUPABASE_KEY,"Authorization":"Bearer " + SUPABASE_KEY}})
+    .then(function(r){ return r.ok ? r.json() : null; })
+    .then(function(list){ if (Array.isArray(list) && list.length) fillCats(list); })
+    .catch(function(){});
 
   var form = document.getElementById("bizForm"), btn = document.getElementById("submitBtn"), errBox = document.getElementById("errorBox");
   var disc = document.getElementById("discount_offered"), discBox = document.getElementById("discountBox");
@@ -192,7 +199,7 @@
       p_business_name: v("business_name"), p_city: v("city"),
       p_submitter_name: v("submitter_name"), p_submitter_email: v("submitter_email"), p_relationship: rel.value,
       p_owner_name: v("owner_name") || null, p_veteran_branch: v("veteran_branch") || null,
-      p_category: v("category") || null, p_description: v("description") || null,
+      p_category_slug: v("category") || null, p_description: v("description") || null,
       p_county: v("county") || null, p_address: v("address") || null, p_phone: v("phone") || null,
       p_website: v("website") || null, p_business_email: v("business_email") || null,
       p_discount_offered: disc.checked, p_discount_details: disc.checked ? (v("discount_details") || null) : null,
