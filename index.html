@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Submit a Veteran-Owned Business | Oregon Veteran Hub</title>
+<meta name="description" content="Know a veteran-owned business in Oregon? Share it with the Oregon Veteran Hub business directory.">
+<style>
+  :root{--navy:#14284b;--navy2:#1f3a68;--gold:#c9a227;--gold2:#e7c55a;--bg:#f5f6f9;--text:#1c2433;--muted:#5b6475;--err:#b3261e;--ok:#1e6b3a}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.45}
+  header{background:var(--navy);color:#fff;padding:28px 20px 22px;border-bottom:5px solid var(--gold);text-align:center}
+  header .brand{font-size:1.5rem;font-weight:700;letter-spacing:.3px}
+  header .tag{color:var(--gold2);font-weight:600;margin-top:4px}
+  main{max-width:720px;margin:0 auto;padding:20px 16px 48px}
+  .card{background:#fff;border-radius:12px;box-shadow:0 1px 3px rgba(0,0,0,.08);padding:22px 20px;margin-bottom:18px}
+  h1{font-size:1.35rem;margin:0 0 8px;color:var(--navy)}
+  h2{font-size:1.05rem;margin:0 0 12px;color:var(--navy);border-left:4px solid var(--gold);padding-left:10px}
+  p.lead{margin:0;color:var(--muted)}
+  .note{background:#fff8e1;border:1px solid #f0dc9a;border-radius:8px;padding:10px 12px;font-size:.93rem;margin-top:14px}
+  label{display:block;font-weight:600;margin:14px 0 5px;font-size:.95rem}
+  .opt{font-weight:400;color:var(--muted);font-size:.85rem}
+  .req{color:var(--err)}
+  input[type=text],input[type=email],input[type=tel],input[type=url],select,textarea{width:100%;padding:11px 12px;border:1px solid #c8cdd8;border-radius:8px;font-size:1rem;font-family:inherit;background:#fff}
+  input:focus,select:focus,textarea:focus{outline:2px solid var(--gold);border-color:var(--gold)}
+  textarea{min-height:96px;resize:vertical}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:0 14px}
+  @media (max-width:560px){.row{grid-template-columns:1fr}}
+  .choice{display:flex;gap:10px;align-items:flex-start;margin:8px 0;font-weight:400}
+  .choice input{margin-top:4px;width:18px;height:18px}
+  .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+  button{background:var(--navy);color:#fff;border:0;border-radius:10px;padding:14px 20px;font-size:1.05rem;font-weight:700;width:100%;cursor:pointer;border-bottom:3px solid var(--gold)}
+  button:hover{background:var(--navy2)}
+  button:disabled{opacity:.6;cursor:wait}
+  .msg{border-radius:10px;padding:16px;margin-top:14px;display:none}
+  .msg.err{display:block;background:#fdecea;color:var(--err);border:1px solid #f3b8b3}
+  #thanks{display:none;text-align:center}
+  #thanks h1{font-size:1.5rem}
+  .small{font-size:.85rem;color:var(--muted)}
+  footer{text-align:center;color:var(--muted);font-size:.85rem;padding:0 16px 30px}
+  a{color:var(--navy2)}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand">Oregon Veteran Hub</div>
+  <div class="tag">Connect. Serve. Belong.</div>
+</header>
+<main>
+  <section id="formWrap">
+    <div class="card">
+      <h1>Share a Veteran-Owned Business</h1>
+      <p class="lead">Help us build a statewide directory of veteran-owned businesses in Oregon. Whether you own the business or just know a great one, we'd love to hear about it.</p>
+      <div class="note">Every listing is reviewed by our team before it appears in the Oregon Veteran Hub app. We may reach out to confirm details. The Veteran-Owned badge and the Veteran Discount Partner badge are separate and are added after review.</div>
+    </div>
+
+    <form id="bizForm" novalidate>
+      <div class="card">
+        <h2>About the business</h2>
+        <label for="business_name">Business name <span class="req">*</span></label>
+        <input id="business_name" name="business_name" type="text" maxlength="150" required autocomplete="organization">
+
+        <div class="row">
+          <div>
+            <label for="owner_name">Owner name <span class="opt">(optional)</span></label>
+            <input id="owner_name" name="owner_name" type="text" maxlength="120">
+          </div>
+          <div>
+            <label for="veteran_branch">Veteran owner's branch <span class="opt">(optional)</span></label>
+            <select id="veteran_branch" name="veteran_branch">
+              <option value="">Select…</option>
+              <option>Army</option><option>Marine Corps</option><option>Navy</option><option>Air Force</option>
+              <option>Space Force</option><option>Coast Guard</option><option>National Guard</option><option>Reserves</option>
+              <option>Prefer not to say</option>
+            </select>
+          </div>
+        </div>
+
+        <label for="category">Category <span class="opt">(optional)</span></label>
+        <select id="category" name="category">
+          <option value="">Select…</option>
+          <option>Automotive</option><option>Construction &amp; Trades</option><option>Food &amp; Drink</option>
+          <option>Health &amp; Wellness</option><option>Home Services</option><option>Professional Services</option>
+          <option>Real Estate</option><option>Retail</option><option>Technology</option><option>Agriculture</option>
+          <option>Arts &amp; Entertainment</option><option>Fitness &amp; Recreation</option><option>Transportation &amp; Logistics</option>
+          <option>Other</option>
+        </select>
+
+        <label for="description">Description <span class="opt">(optional)</span></label>
+        <textarea id="description" name="description" maxlength="2000" placeholder="What does the business offer?"></textarea>
+      </div>
+
+      <div class="card">
+        <h2>Location &amp; contact</h2>
+        <div class="row">
+          <div>
+            <label for="city">City <span class="req">*</span></label>
+            <input id="city" name="city" type="text" maxlength="80" required autocomplete="address-level2">
+          </div>
+          <div>
+            <label for="county">County <span class="opt">(optional)</span></label>
+            <select id="county" name="county"><option value="">Select…</option></select>
+          </div>
+        </div>
+        <label for="address">Street address <span class="opt">(optional)</span></label>
+        <input id="address" name="address" type="text" maxlength="250" autocomplete="street-address">
+        <div class="row">
+          <div>
+            <label for="phone">Phone <span class="opt">(optional)</span></label>
+            <input id="phone" name="phone" type="tel" maxlength="40" autocomplete="tel">
+          </div>
+          <div>
+            <label for="business_email">Business email <span class="opt">(optional)</span></label>
+            <input id="business_email" name="business_email" type="email" maxlength="254">
+          </div>
+        </div>
+        <label for="website">Website <span class="opt">(optional)</span></label>
+        <input id="website" name="website" type="text" inputmode="url" maxlength="300" placeholder="example.com">
+      </div>
+
+      <div class="card">
+        <h2>Veteran discount <span class="opt">(optional)</span></h2>
+        <label class="choice"><input type="checkbox" id="discount_offered" name="discount_offered"> This business offers a discount for veterans</label>
+        <div id="discountBox" style="display:none">
+          <label for="discount_details">Discount details</label>
+          <textarea id="discount_details" name="discount_details" maxlength="1000" placeholder="For example: 10% off for veterans and military families with ID"></textarea>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>About you</h2>
+        <div class="row">
+          <div>
+            <label for="submitter_name">Your name <span class="req">*</span></label>
+            <input id="submitter_name" name="submitter_name" type="text" maxlength="120" required autocomplete="name">
+          </div>
+          <div>
+            <label for="submitter_email">Your email <span class="req">*</span></label>
+            <input id="submitter_email" name="submitter_email" type="email" maxlength="254" required autocomplete="email">
+          </div>
+        </div>
+        <label>Your connection to this business <span class="req">*</span></label>
+        <label class="choice"><input type="radio" name="relationship" value="owner"> I'm the owner</label>
+        <label class="choice"><input type="radio" name="relationship" value="recommending"> I'm recommending this business</label>
+        <p class="small">Your name and email are only used by our review team and won't be shown in the app.</p>
+
+        <div class="hp" aria-hidden="true">
+          <label for="company_url">Leave this field empty</label>
+          <input id="company_url" name="company_url" type="text" tabindex="-1" autocomplete="off">
+        </div>
+
+        <div id="errorBox" class="msg" role="alert"></div>
+        <div style="margin-top:18px"><button id="submitBtn" type="submit">Submit business</button></div>
+      </div>
+    </form>
+  </section>
+
+  <section id="thanks" class="card" aria-live="polite">
+    <h1>Thank you!</h1>
+    <p>We've received your submission. Our team will review it, and once approved it will appear in the Oregon Veteran Hub business directory.</p>
+    <p><button type="button" id="againBtn">Submit another business</button></p>
+  </section>
+</main>
+<footer>Oregon Veteran Hub &middot; a project of Greater Yamhill County Veteran Services<br>Questions? <a href="mailto:info@oregonveteranhub.org">info@oregonveteranhub.org</a></footer>
+
+<script>
+(function(){
+  var SUPABASE_URL = "https://rzzmhrewckartnzuuhot.supabase.co";
+  var SUPABASE_KEY = "sb_publishable_q0TYaXWMRQ5E-qDvj1oNHw_iapm02qg";
+  var COUNTIES = ["Baker","Benton","Clackamas","Clatsop","Columbia","Coos","Crook","Curry","Deschutes","Douglas","Gilliam","Grant","Harney","Hood River","Jackson","Jefferson","Josephine","Klamath","Lake","Lane","Lincoln","Linn","Malheur","Marion","Morrow","Multnomah","Polk","Sherman","Tillamook","Umatilla","Union","Wallowa","Wasco","Washington","Wheeler","Yamhill"];
+  var sel = document.getElementById("county");
+  COUNTIES.forEach(function(c){var o=document.createElement("option");o.textContent=c;sel.appendChild(o);});
+
+  var form = document.getElementById("bizForm"), btn = document.getElementById("submitBtn"), errBox = document.getElementById("errorBox");
+  var disc = document.getElementById("discount_offered"), discBox = document.getElementById("discountBox");
+  disc.addEventListener("change", function(){ discBox.style.display = disc.checked ? "block" : "none"; });
+
+  function v(id){ return (document.getElementById(id).value || "").trim(); }
+  function showErr(m){ errBox.textContent = m; errBox.className = "msg err"; errBox.scrollIntoView({behavior:"smooth",block:"center"}); }
+
+  form.addEventListener("submit", function(e){
+    e.preventDefault();
+    errBox.className = "msg";
+    var rel = form.querySelector('input[name="relationship"]:checked');
+    if (v("business_name").length < 2) return showErr("Please enter the business name.");
+    if (v("city").length < 2) return showErr("Please enter the city.");
+    if (!v("submitter_name")) return showErr("Please enter your name.");
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v("submitter_email"))) return showErr("Please enter a valid email address for yourself.");
+    if (!rel) return showErr("Please choose whether you own or are recommending this business.");
+
+    var payload = {
+      p_business_name: v("business_name"), p_city: v("city"),
+      p_submitter_name: v("submitter_name"), p_submitter_email: v("submitter_email"), p_relationship: rel.value,
+      p_owner_name: v("owner_name") || null, p_veteran_branch: v("veteran_branch") || null,
+      p_category: v("category") || null, p_description: v("description") || null,
+      p_county: v("county") || null, p_address: v("address") || null, p_phone: v("phone") || null,
+      p_website: v("website") || null, p_business_email: v("business_email") || null,
+      p_discount_offered: disc.checked, p_discount_details: disc.checked ? (v("discount_details") || null) : null,
+      p_hp: v("company_url") || null
+    };
+    btn.disabled = true; btn.textContent = "Submitting…";
+    fetch(SUPABASE_URL + "/rest/v1/rpc/submit_business_listing", {
+      method: "POST",
+      headers: {"Content-Type":"application/json","apikey":SUPABASE_KEY,"Authorization":"Bearer " + SUPABASE_KEY},
+      body: JSON.stringify(payload)
+    }).then(function(r){
+      return r.json().catch(function(){return {};}).then(function(j){ return {ok:r.ok, j:j}; });
+    }).then(function(res){
+      if (res.ok) {
+        form.reset(); discBox.style.display = "none";
+        document.getElementById("formWrap").style.display = "none";
+        document.getElementById("thanks").style.display = "block";
+        window.scrollTo(0,0);
+      } else {
+        var m = res.j && res.j.code === "22023" && res.j.message ? res.j.message : "Sorry, something went wrong and your submission wasn't saved. Please try again in a few minutes, or email info@oregonveteranhub.org.";
+        showErr(m);
+      }
+    }).catch(function(){
+      showErr("We couldn't reach the server. Please check your connection and try again, or email info@oregonveteranhub.org.");
+    }).then(function(){ btn.disabled = false; btn.textContent = "Submit business"; });
+  });
+  document.getElementById("againBtn").addEventListener("click", function(){
+    document.getElementById("thanks").style.display = "none";
+    document.getElementById("formWrap").style.display = "block";
+    window.scrollTo(0,0);
+  });
+})();
+</script>
+</body>
+</html>
